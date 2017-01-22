@@ -27,6 +27,21 @@ func (u *UserController) Register() {
 	}
 	u.ServeJSON()
 }
+func (u *UserController) Login() {
+	type Message struct {
+		UserName, Password string
+	}
+	var m Message
+	json.Unmarshal(u.Ctx.Input.RequestBody, &m)
+
+	login_flag, e := models.GetUserLoginInfo(models.User{UserName: m.UserName, Password: m.Password})
+	if login_flag != true {
+		u.Data["json"] = &models.LoginResult{Result: 1, Err: e.Error()}
+	} else {
+		u.Data["json"] = &models.LoginResult{Result: 0, Err: "ok"}
+	}
+	u.ServeJSON()
+}
 
 //// @Title CreateUser
 //// @Description create users

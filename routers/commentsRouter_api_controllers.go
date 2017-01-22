@@ -55,12 +55,12 @@ func init() {
 			[]string{"post"},
 			nil})
 
-	//	beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"] = append(beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"],
-	//		beego.ControllerComments{
-	//			"Login",
-	//			`/login`,
-	//			[]string{"post"},
-	//			nil})
+	beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"] = append(beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"],
+		beego.ControllerComments{
+			"Login",
+			`/login`,
+			[]string{"post"},
+			nil})
 
 	//	beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"] = append(beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"],
 	//		beego.ControllerComments{
