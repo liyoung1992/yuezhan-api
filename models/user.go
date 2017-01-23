@@ -30,6 +30,14 @@ type User struct {
 	UpdateTime    int
 	LastLoginTime int
 }
+type UserList struct {
+	Id       string `orm:"column(id)"`
+	UserName string `orm:"column(userName)"`
+
+	CreateTime    int `orm:"column(createTime)"`
+	UpdateTime    int `orm:"column(updateTime)"`
+	LastLoginTime int `orm:"column(lastLoginTime)"`
+}
 
 //添加用户
 func AddUser(u User) error {
@@ -60,6 +68,17 @@ func GetUserLoginInfo(u User) (bool, error) {
 		return false, e
 	}
 	return true, nil
+}
+
+//查询所有用户列表
+func GetAllUser() ([]UserList, error) {
+	var userList []UserList
+	_, e := o.Raw("SELECT `id`,`userName`,`createTime`,`updateTime`,`lastLoginTime` FROM `tb_user`;").QueryRows(&userList)
+	fmt.Println(userList)
+	if e != nil {
+		return nil, e
+	}
+	return userList, nil
 }
 
 //获取md5加密后的密码

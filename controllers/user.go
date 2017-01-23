@@ -12,6 +12,7 @@ type UserController struct {
 	beego.Controller
 }
 
+//用户注册
 func (u *UserController) Register() {
 	type Message struct {
 		UserName, Password, Salt string
@@ -27,6 +28,8 @@ func (u *UserController) Register() {
 	}
 	u.ServeJSON()
 }
+
+//用户登陆
 func (u *UserController) Login() {
 	type Message struct {
 		UserName, Password string
@@ -39,6 +42,18 @@ func (u *UserController) Login() {
 		u.Data["json"] = &models.LoginResult{Result: 1, Err: e.Error()}
 	} else {
 		u.Data["json"] = &models.LoginResult{Result: 0, Err: "ok"}
+	}
+	u.ServeJSON()
+}
+
+//获取用户列表
+func (u *UserController) UserList() {
+	var users []models.UserList
+	users, e := models.GetAllUser()
+	if e != nil {
+		u.Data["json"] = &models.UserListResult{Result: 1, Err: e.Error()}
+	} else {
+		u.Data["json"] = &models.UserListResult{Result: 0, Err: "ok", UserList: users, Num: len(users)}
 	}
 	u.ServeJSON()
 }
