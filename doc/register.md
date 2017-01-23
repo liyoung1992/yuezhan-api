@@ -24,7 +24,7 @@
 3.    密码设计逻辑:
 
    1.加密逻辑
-    Password=md5(md5(password)+salt)
+    Password=md5(password+salt)
    2.解密逻辑
     根据传过来的用户密码和salt在进行md5一次，然后和数据password进行对比。
 
