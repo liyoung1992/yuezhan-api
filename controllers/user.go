@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"encoding/json"
+	"yuezhan-api/common"
 	"yuezhan-api/models"
 
 	"github.com/astaxie/beego"
@@ -15,46 +16,65 @@ type UserController struct {
 //用户注册
 func (u *UserController) Register() {
 	type Message struct {
-		UserName, Password, Salt string
-		CreateTime               int
+		UserName, Password, Salt, Token, Key string
+		CreateTime                           int
 	}
 	var m Message
 	json.Unmarshal(u.Ctx.Input.RequestBody, &m)
-	e := models.AddUser(models.User{UserName: m.UserName, Password: m.Password, Salt: m.Salt, CreateTime: m.CreateTime})
-	if e != nil {
-		u.Data["json"] = &models.RegisterResult{Result: 1, Err: e.Error()}
+	if common.Filter(m.Token, m.Key) {
+		e := models.AddUser(models.User{UserName: m.UserName, Password: m.Password, Salt: m.Salt, CreateTime: m.CreateTime})
+		if e != nil {
+			u.Data["json"] = &models.RegisterResult{Result: 1, Err: e.Error()}
+		} else {
+			u.Data["json"] = &models.RegisterResult{Result: 0, Err: "ok"}
+		}
 	} else {
-		u.Data["json"] = &models.RegisterResult{Result: 0, Err: "ok"}
+		u.Data["json"] = &models.RegisterResult{Result: 1, Err: "token或key错误"}
 	}
+
 	u.ServeJSON()
 }
 
 //用户登陆
 func (u *UserController) Login() {
 	type Message struct {
-		UserName, Password string
+		UserName, Password, Token, Key string
 	}
 	var m Message
 	json.Unmarshal(u.Ctx.Input.RequestBody, &m)
-
-	login_flag, e := models.GetUserLoginInfo(models.User{UserName: m.UserName, Password: m.Password})
-	if login_flag != true {
-		u.Data["json"] = &models.LoginResult{Result: 1, Err: e.Error()}
+	if common.Filter(m.Token, m.Key) {
+		login_flag, e := models.GetUserLoginInfo(models.User{UserName: m.UserName, Password: m.Password})
+		if login_flag != true {
+			u.Data["json"] = &models.LoginResult{Result: 1, Err: e.Error()}
+		} else {
+			u.Data["json"] = &models.LoginResult{Result: 0, Err: "ok"}
+		}
 	} else {
-		u.Data["json"] = &models.LoginResult{Result: 0, Err: "ok"}
+		u.Data["json"] = &models.RegisterResult{Result: 1, Err: "token或key错误"}
 	}
 	u.ServeJSON()
 }
 
 //获取用户列表
 func (u *UserController) UserList() {
-	var users []models.UserList
-	users, e := models.GetAllUser()
-	if e != nil {
-		u.Data["json"] = &models.UserListResult{Result: 1, Err: e.Error()}
-	} else {
-		u.Data["json"] = &models.UserListResult{Result: 0, Err: "ok", UserList: users, Num: len(users)}
+	type Message struct {
+		Token, Key string
 	}
+	var m Message
+	json.Unmarshal(u.Ctx.Input.RequestBody, &m)
+
+	if common.Filter(m.Token, m.Key) {
+		var users []models.UserList
+		users, e := models.GetAllUser()
+		if e != nil {
+			u.Data["json"] = &models.UserListResult{Result: 1, Err: e.Error()}
+		} else {
+			u.Data["json"] = &models.UserListResult{Result: 0, Err: "ok", UserList: users, Num: len(users)}
+		}
+	} else {
+		u.Data["json"] = &models.RegisterResult{Result: 1, Err: "token或key错误"}
+	}
+
 	u.ServeJSON()
 }
 

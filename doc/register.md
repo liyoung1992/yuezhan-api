@@ -5,10 +5,12 @@
 
    ```go
     {
-       "UserName":"liyoung",//用户名
-       "Salt":"4b9iWOU6qeECN8h",//salt
-       "Password":"574aafa475e4a00ba95196dae7860089",//密码
-       "CreateTime":1484893394 //创建时间（unix时间戳//注册结果）
+    	Token: "token",
+        Key: "key",
+        UserName:"liyoung",//用户名
+        Salt:"4b9iWOU6qeECN8h",//salt
+        Password:"574aafa475e4a00ba95196dae7860089",//密码
+        CreateTime:1484893394 //创建时间（unix时间戳//注册结果）
        }
    ```
 
