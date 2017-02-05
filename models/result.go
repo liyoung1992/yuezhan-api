@@ -16,3 +16,7 @@ type UserListResult struct {
 	Err      string
 	UserList []UserList
 }
+type AddTeamResult struct {
+	Result int64
+	Err    string
+}

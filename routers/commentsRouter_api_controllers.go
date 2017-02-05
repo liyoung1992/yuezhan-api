@@ -69,11 +69,11 @@ func init() {
 			[]string{"post"},
 			nil})
 
-	//	beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"] = append(beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"],
-	//		beego.ControllerComments{
-	//			"Hello",
-	//			`/:uid/hello`,
-	//			[]string{"get"},
-	//			nil})
+	beego.GlobalControllerRouter["yuezhan-api/controllers:TeamController"] = append(beego.GlobalControllerRouter["yuezhan-api/controllers:TeamController"],
+		beego.ControllerComments{
+			"AddTeam",
+			`/add-team`,
+			[]string{"post"},
+			nil})
 
 }
