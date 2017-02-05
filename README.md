@@ -11,3 +11,6 @@
 ## 战队模块
 
 1. [添加战队](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/add-team.md)
+2. [加入战队](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/join-team.md)
+3. [战队详情](http://)
+4. [战队列表](http://)

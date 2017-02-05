@@ -27,3 +27,33 @@ func AddTeam(t Team) error {
 	}
 	return nil
 }
+
+//用户加入战队
+func JoinTeam(t Team) error {
+	_, e := o.Raw("update `tb_user` set `teamId` = ? where id = ?", t.Id, t.UserId).Exec()
+	if e != nil {
+		return e
+	}
+	return nil
+}
+
+//获取战队详情
+
+func TeamInfo(t Team) (Team, error) {
+	var team Team
+	e := o.Raw("select * from tb_team where id = ?;", t.Id).QueryRow(&team)
+	if e != nil {
+		return team, e
+	}
+	return team, nil
+}
+
+//获取战队列表
+func TeamList() ([]Team, error) {
+	var teams []Team
+	_, e := o.Raw("select * from tb_team").QueryRows(&teams)
+	if e != nil {
+		return nil, e
+	}
+	return teams, nil
+}

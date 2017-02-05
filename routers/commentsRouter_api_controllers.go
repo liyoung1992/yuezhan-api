@@ -75,5 +75,11 @@ func init() {
 			`/add-team`,
 			[]string{"post"},
 			nil})
+	beego.GlobalControllerRouter["yuezhan-api/controllers:TeamController"] = append(beego.GlobalControllerRouter["yuezhan-api/controllers:TeamController"],
+		beego.ControllerComments{
+			"AddTeam",
+			`/join-team`,
+			[]string{"post"},
+			nil})
 
 }
