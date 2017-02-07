@@ -17,6 +17,13 @@ type UserListResult struct {
 	UserList []UserList
 }
 
+//获取用户详情
+type UserInfoResult struct {
+	Result int64
+	Err    string
+	User   User
+}
+
 //战队
 type AddTeamResult struct {
 	Result int64
@@ -30,12 +37,16 @@ type JoinTeamResult struct {
 }
 
 //获取战队详情
-type TeamInofoResult struct {
-	Id         int    `orm:"column(id)"`
-	TeamName   string `orm:"column(teamName)"`
-	RegionId   int    `orm:"column(regionId)"`
-	UserId     int    `orm:"column(userId)"`
-	LeaderId   int    `orm:column(leaderId)`
-	CreateTime int    `orm:column(createTime)`
-	ImageUrl   string `orm:column(imageUrl)`
+type TeamInfoResult struct {
+	Result int64
+	Err    string
+	Team   Team
+}
+
+//获取战队列表
+type TeamListResult struct {
+	Result   int64
+	Num      int
+	Err      string
+	TeamList []Team
 }

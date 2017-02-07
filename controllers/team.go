@@ -61,8 +61,52 @@ func (u *TeamController) JoinTeam() {
 		} else {
 			u.Data["json"] = &models.JoinTeamResult{Result: 0, Err: "ok"}
 		}
-
 	} else {
 		u.Data["json"] = &models.JoinTeamResult{Result: 1, Err: "token或key错误"}
 	}
+	u.ServeJSON()
+}
+
+func (u *TeamController) TeamInfo() {
+	type Message struct {
+		Token  string `orm:column(token)`
+		Key    string `orm:column(key)`
+		TeamId int    `orm:column(teamId)`
+	}
+	var m Message
+	json.Unmarshal(u.Ctx.Input.RequestBody, &m)
+
+	if common.Filter(m.Token, m.Key) {
+		var t models.Team
+		t, e := models.TeamInfo(models.Team{Id: m.TeamId})
+		if e != nil {
+			u.Data["json"] = &models.TeamInfoResult{Result: 1, Err: e.Error()}
+		} else {
+			u.Data["json"] = &models.TeamInfoResult{Result: 0, Err: "ok", Team: t}
+		}
+	} else {
+		u.Data["json"] = &models.TeamInfoResult{Result: 1, Err: "token或key错误"}
+	}
+	u.ServeJSON()
+}
+func (t *TeamController) TeamList() {
+	type Message struct {
+		Token string `orm:column(token)`
+		Key   string `orm:column(key)`
+	}
+	var m Message
+	json.Unmarshal(t.Ctx.Input.RequestBody, &m)
+
+	if common.Filter(m.Token, m.Key) {
+		var teams []models.Team
+		teams, e := models.TeamList()
+		if e != nil {
+			t.Data["json"] = &models.TeamListResult{Result: 1, Err: e.Error()}
+		} else {
+			t.Data["json"] = &models.TeamListResult{Result: 0, Err: "ok", TeamList: teams, Num: len(teams)}
+		}
+	} else {
+		t.Data["json"] = &models.TeamListResult{Result: 1, Err: "token或key错误"}
+	}
+	t.ServeJSON()
 }

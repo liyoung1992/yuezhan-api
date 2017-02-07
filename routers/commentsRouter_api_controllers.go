@@ -61,6 +61,12 @@ func init() {
 			`/login`,
 			[]string{"post"},
 			nil})
+	beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"] = append(beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"],
+		beego.ControllerComments{
+			"UserInfo",
+			`/user-info`,
+			[]string{"post"},
+			nil})
 
 	beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"] = append(beego.GlobalControllerRouter["yuezhan-api/controllers:UserController"],
 		beego.ControllerComments{
@@ -81,5 +87,16 @@ func init() {
 			`/join-team`,
 			[]string{"post"},
 			nil})
-
+	beego.GlobalControllerRouter["yuezhan-api/controllers:TeamController"] = append(beego.GlobalControllerRouter["yuezhan-api/controllers:TeamController"],
+		beego.ControllerComments{
+			"TeamInfo",
+			`/team-info`,
+			[]string{"post"},
+			nil})
+	beego.GlobalControllerRouter["yuezhan-api/controllers:TeamController"] = append(beego.GlobalControllerRouter["yuezhan-api/controllers:TeamController"],
+		beego.ControllerComments{
+			"TeamList",
+			`/team-list`,
+			[]string{"post"},
+			nil})
 }

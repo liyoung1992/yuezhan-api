@@ -23,11 +23,12 @@ func init() {
 
 type User struct {
 	Id            string
-	UserName      string
+	UserName      string `orm:"column(userName)"`
 	Password      string
 	Salt          string
 	CreateTime    int
 	UpdateTime    int
+	TeamId        int `orm:"column(teamId)"`
 	LastLoginTime int
 }
 type UserList struct {
@@ -79,6 +80,18 @@ func GetAllUser() ([]UserList, error) {
 		return nil, e
 	}
 	return userList, nil
+}
+
+//获取用户详情
+
+func UserInfo(u User) (User, error) {
+	var user User
+	fmt.Println(u)
+	e := o.Raw("select `id`,`userName`,`teamId`,`imageUrl` from tb_user where id = ?;", u.Id).QueryRow(&user)
+	if e != nil {
+		return user, e
+	}
+	return user, nil
 }
 
 //获取md5加密后的密码

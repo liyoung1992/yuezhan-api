@@ -2,6 +2,8 @@ package controllers
 
 import (
 	"encoding/json"
+	"fmt"
+	"strconv"
 	"yuezhan-api/common"
 	"yuezhan-api/models"
 
@@ -75,6 +77,29 @@ func (u *UserController) UserList() {
 		u.Data["json"] = &models.RegisterResult{Result: 1, Err: "token或key错误"}
 	}
 
+	u.ServeJSON()
+}
+func (u *UserController) UserInfo() {
+
+	type Message struct {
+		Token  string `orm:column(token)`
+		Key    string `orm:column(key)`
+		UserId int    `orm:column(userId)`
+	}
+	var m Message
+	json.Unmarshal(u.Ctx.Input.RequestBody, &m)
+	fmt.Println(m)
+	if common.Filter(m.Token, m.Key) {
+		var user models.User
+		user, e := models.UserInfo(models.User{Id: strconv.Itoa(m.UserId)})
+		if e != nil {
+			u.Data["json"] = &models.UserInfoResult{Result: 1, Err: e.Error()}
+		} else {
+			u.Data["json"] = &models.UserInfoResult{Result: 0, Err: "ok", User: user}
+		}
+	} else {
+		u.Data["json"] = &models.UserInfoResult{Result: 1, Err: "token或key错误"}
+	}
 	u.ServeJSON()
 }
 
