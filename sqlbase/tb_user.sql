@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : 本地
-Source Server Version : 50173
+Source Server Version : 50505
 Source Host           : 192.168.2.221:3306
 Source Database       : beego
 
 Target Server Type    : MYSQL
-Target Server Version : 50173
+Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-02-03 20:20:34
+Date: 2017-03-02 19:44:11
 */
 
 SET FOREIGN_KEY_CHECKS=0;

@@ -8,5 +8,5 @@ import (
 
 func init() {
 	orm.RegisterDriver("mysql", orm.DRMySQL)
-	orm.RegisterDataBase("default", "mysql", "gdzt:039.com@tcp(192.168.2.221:3306)/beego?charset=utf8&loc=Asia%2FShanghai")
+	orm.RegisterDataBase("default", "mysql", "gdzt:039.com@tcp(192.168.80.221:3306)/beego?charset=utf8&loc=Asia%2FShanghai")
 }
