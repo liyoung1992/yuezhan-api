@@ -5,14 +5,14 @@ import (
 	"fmt"
 	"strconv"
 	"yuezhan-api/common"
-	"yuezhan-api/models"
 
-	"github.com/astaxie/beego"
+	"yuezhan-api/models"
+	//	"github.com/astaxie/beego"
 )
 
 // Operations about Users
 type UserController struct {
-	beego.Controller
+	BaseController
 }
 
 //用户注册

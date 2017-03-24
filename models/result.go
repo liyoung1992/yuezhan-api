@@ -1,6 +1,11 @@
 package models
 
 // Result as a return json template.
+type VerificateResult struct {
+	Result int64  `json:"result"`
+	Err    string `json:"err"`
+}
+
 //注册返回结果
 type RegisterResult struct {
 	Result int64  `json:"result"`
