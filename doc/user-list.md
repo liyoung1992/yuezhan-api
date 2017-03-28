@@ -22,8 +22,7 @@ API接口：IP/v1/user/user-list
 |  userId |   string |否|用户名称|
 |  shift |   int |否|偏移量|
 |  point |   int |否|请求开始点|
-
-
+|  order |   int |否|0：时间倒序，1时间正序|
 
 
 
@@ -69,6 +68,9 @@ API接口：IP/v1/user/user-list
     qq:"2587401690",
     phone:"18355519881",
     email:"liyoung_1992@163.com"
+    shift:15,
+    point:0,
+    order:0
 }
 
 ```
@@ -81,6 +83,7 @@ API接口：IP/v1/user/user-list
     result: 1000,//注册结果，1000表示成功，否则错误（显示对应的错误码）
     message: "success", //错误描述
     num:12,
+    total:102,
     userList: [
     {
         id: "12",
