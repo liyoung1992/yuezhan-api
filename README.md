@@ -40,8 +40,8 @@
 2. [加入战队](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/join-team.md)
 3. [获取战队详情](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/team-info.md)
 4. [查询战队列表](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/team-list.md)
-5. [更新战队信息](http://)
-6. [删除战队](http://)
+5. [更新战队信息](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/team-update.md)
+6. [删除战队](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/team-delete.md)
 
 
 
