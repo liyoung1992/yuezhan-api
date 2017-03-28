@@ -3,14 +3,14 @@ Navicat MySQL Data Transfer
 
 Source Server         : 本地
 Source Server Version : 50505
-Source Host           : 192.168.2.221:3306
+Source Host           : 192.168.80.221:3306
 Source Database       : beego
 
 Target Server Type    : MYSQL
 Target Server Version : 50505
 File Encoding         : 65001
 
-Date: 2017-03-02 19:44:01
+Date: 2017-03-28 13:07:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -27,5 +27,6 @@ CREATE TABLE `tb_team` (
   `leaderId` int(11) DEFAULT NULL COMMENT '队长',
   `createTime` int(11) DEFAULT NULL COMMENT '创建时间',
   `imageUrl` varchar(255) DEFAULT NULL COMMENT '头像url',
+  `updateTime` int(11) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
