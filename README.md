@@ -47,12 +47,12 @@
 
 #### 比赛模块
 
-1. [添加比赛](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/add-team.md)
-2. [邀请战队加入比赛](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/join-team.md)
-3. [获取比赛详情](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/team-info.md)
-4. [查询比赛列表](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/team-list.md)
-5. [更新比赛信息](http://)
-6. [删除比赛](http://)
+1. [添加比赛](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/game-add.md)
+2. [邀请战队或者个人加入比赛](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/game-invite.md)
+3. [获取比赛详情](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/game-list.md)
+4. [查询比赛列表](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/game-list.md)
+5. [更新比赛信息](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/game-update.md)
+6. [删除比赛](https://github.com/liyoung1992/yuezhan-api/blob/master/doc/game-delete.md)
 
 
 
